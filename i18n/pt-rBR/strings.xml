@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+	<string name="home">Início</string>	
+	<string name="settings">Configurações</string>
+	<string name="openWindow">Abrir Nova Janela</string>
+	<string name="newWindow">Nova Janela</string>
+	<string name="testUsb">Testar Comunicação USB</string>
+</resources>
