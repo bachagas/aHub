@@ -1,56 +1,91 @@
-/*
- * A tabbed application, consisting of multiple stacks of windows associated with tabs in a tab group.
- * A starting point for tab-based application with multiple top-level windows.
- * Requires Titanium Mobile SDK 1.8.0+.
- *
- * In app.js, we generally take care of a few things:
- * - Bootstrap the application with any data we need
- * - Check for dependencies like device type, platform version or network connection
- * - Require and open our top-level UI component
- *
- */
 
-//bootstrap and check dependencies
-if (Ti.version < 2.0 ) {
-	alert('Sorry - this application template requires Titanium Mobile SDK 2.0 or later');
-}
 
-// This is a single context application with mutliple windows in a stack
-(function() {
-  //determine platform and form factor and render approproate components
-  var osname = Ti.Platform.osname,
-    version = Ti.Platform.version,
-    height = Ti.Platform.displayCaps.platformHeight,
-    width = Ti.Platform.displayCaps.platformWidth;
+var Init= require('/ui/common/Config/init');
 
-  function checkTablet() {
-    var platform = Ti.Platform.osname;
+var USBSERIAL = require('jp.isisredirect.usbserial');
+Ti.API.info("module is => " + USBSERIAL);
 
-    switch (platform) {
-      case 'ipad':
-        return true;
-      case 'android':
-        var psc = Ti.Platform.Android.physicalSizeCategory;
-        var tiAndroid = Ti.Platform.Android;
-        return psc === tiAndroid.PHYSICAL_SIZE_CATEGORY_LARGE || psc === tiAndroid.PHYSICAL_SIZE_CATEGORY_XLARGE;
-      default:
-        return Math.min(
-          Ti.Platform.displayCaps.platformHeight,
-          Ti.Platform.displayCaps.platformWidth
-        ) >= 400;
-    }
-  }
+USBSERIAL.addEventListener(USBSERIAL.RECEIVED, function(e) {
+//	conTextField.value += '\n' + e.data.length + ":" + e.data +";";
+//	alert(e.data);
+});
 
-  var isTablet = checkTablet();
+USBSERIAL.open();
+function sendData(data){
+	var buffer = Ti.createBuffer({
+		value:data
+	});
+	USBSERIAL.sendData(buffer);
+//	alert(data);
+};
+var conTextField = Ti.UI.createTextArea({
+	title : 'send',
+	editable : false,
+	verticalAlign : 'top',
+	enableReturnKey : false,
+	height : '70%',
+	width : '90%',
+	top : '5%',
+	left : '5%'
+});
+//conTextField.value += '\ndevice' + USBSERIAL.getDeviceName();
 
-  var Window;
-  if (isTablet) {
-    Window = require('ui/tablet/ApplicationWindow');
-  } else {
-    Window = require('ui/handheld/ApplicationWindow');
-  }
-
-  var ApplicationTabGroup = require('ui/common/ApplicationTabGroup');
-  new ApplicationTabGroup(Window).open();
-  
+(function(){
+	if(Titanium.Filesystem.isExternalStoragePresent){
+		Init();
+		var Mang = require("/ui/common/mainWindow");
+		Mang(sendData);
+	}
 })();
+
+
+/*win.open();
+
+
+// This is a test harness for your module
+// You should do something interesting in this harness
+// to test out the module and to provide instructions
+// to users on how to use it by example.
+
+// open a single window
+var win = Ti.UI.createWindow({
+	backgroundColor : 'white'
+});
+var clearbutton = Ti.UI.createButton({
+	title : 'clear',
+	height : '7%',
+	width : '35%',
+	top : '90%',
+	left : '65%'
+});
+var sendbutton = Ti.UI.createButton({
+	title : 'send',
+	height : '7%',
+	width : '35%',
+	top : '80%',
+	left : '65%'
+});
+var sendText = Ti.UI.createTextArea({
+	title : 'send',
+	height : '10%',
+	width : '57%',
+	top : '80%',
+	left : '5%'
+});
+
+win.add(clearbutton);
+win.add(conTextField);
+win.add(sendText);
+win.add(sendbutton);
+
+
+
+clearbutton.addEventListener("click", function(e) {
+	conTextField.value = "";
+});
+sendbutton.addEventListener("click", function(e) {
+	var buffer = Ti.createBuffer({
+		value:sendText.value
+	});
+	USBSERIAL.sendData(buffer);
+});*/
