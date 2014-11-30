@@ -1,7 +1,7 @@
 
 
 module.exports = function(win){
-	var Conf= require("/ui/common/Config/config");
+	var Conf= require("/ui/common/Config/configMainWindow");
 		var view = Ti.UI.createView({
 			height : "50dp",
 			width : "100%",

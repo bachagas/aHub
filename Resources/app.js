@@ -1,6 +1,6 @@
 
 
-var Init= require('/ui/common/Config/init');
+//var Init= require('/data/ConfigOld/init');
 
 var USBSERIAL = require('jp.isisredirect.usbserial');
 Ti.API.info("module is => " + USBSERIAL);
@@ -31,61 +31,6 @@ var conTextField = Ti.UI.createTextArea({
 //conTextField.value += '\ndevice' + USBSERIAL.getDeviceName();
 
 (function(){
-	if(Titanium.Filesystem.isExternalStoragePresent){
-		Init();
-		var Mang = require("/ui/common/mainWindow");
-		Mang(sendData);
-	}
+	var Mang = require("/ui/common/mainWindow");
+	Mang(sendData);
 })();
-
-
-/*win.open();
-
-
-// This is a test harness for your module
-// You should do something interesting in this harness
-// to test out the module and to provide instructions
-// to users on how to use it by example.
-
-// open a single window
-var win = Ti.UI.createWindow({
-	backgroundColor : 'white'
-});
-var clearbutton = Ti.UI.createButton({
-	title : 'clear',
-	height : '7%',
-	width : '35%',
-	top : '90%',
-	left : '65%'
-});
-var sendbutton = Ti.UI.createButton({
-	title : 'send',
-	height : '7%',
-	width : '35%',
-	top : '80%',
-	left : '65%'
-});
-var sendText = Ti.UI.createTextArea({
-	title : 'send',
-	height : '10%',
-	width : '57%',
-	top : '80%',
-	left : '5%'
-});
-
-win.add(clearbutton);
-win.add(conTextField);
-win.add(sendText);
-win.add(sendbutton);
-
-
-
-clearbutton.addEventListener("click", function(e) {
-	conTextField.value = "";
-});
-sendbutton.addEventListener("click", function(e) {
-	var buffer = Ti.createBuffer({
-		value:sendText.value
-	});
-	USBSERIAL.sendData(buffer);
-});*/

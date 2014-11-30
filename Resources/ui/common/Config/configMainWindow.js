@@ -1,43 +1,34 @@
 /**
  * @author Alain
  */
+var MainButtons= require("/ui/common/mainMenuBar");
+var TVConf= require("/ui/common/Config/selectTV");
+var DECConf= require("/ui/common/Config/selectDEC");
+var COMPConf= require("/ui/common/Config/configCOMP");
 
-var Tv= require("/ui/common/Scenarios/tv");
-var Dec= require("/ui/common/Scenarios/decoder");
-var Relay= require("/ui/common/Scenarios/relay");
-var HeadSet= require("/ui/common/Scenarios/headset");
-var Computer = require("/ui/common/Scenarios/computer");
-
-var mainMenuBar= require("/ui/common/mainMenuBar");
-
-module.exports = function(sendData) {
+module.exports = function(){
 	var win = Ti.UI.createWindow({
 			backgroundColor:'#fff',
 			title: 'aHub'
 	});
-	
 	function controlW(e){
 		switch(e.itemIndex){
 			case 0:
-				Tv(sendData);
+				TVConf();
 				break;
 			case 1:
-			    Dec(sendData);
+			    DECConf();
 				break;
 			case 2:
-				Relay(sendData);
+				COMPConf();
 				break;
 			case 3:
-				HeadSet(sendData);
-				break;
-			case 4:
-				Computer({title:"Computer"});
 				break;
 			default:
 				break;
 		}
 	};
-	function mainView(){
+	function mainConf(){
 		var data=[];
 	
 		var template = {
@@ -82,22 +73,6 @@ module.exports = function(sendData) {
 		});
 		data.push({
 			rowtitle : {
-				text : "Relay"
-			},
-			image : {
-				image : "images/Icon_lamp.png"
-			}
-		});
-		data.push({
-			rowtitle : {
-				text : "HeadSet"
-			},
-			image : {
-				image : "images/Icon_headset.png"
-			}
-		});
-		data.push({
-			rowtitle : {
 				text : "Computer"
 			},
 			image : {
@@ -106,6 +81,7 @@ module.exports = function(sendData) {
 		});
 		var listView = Ti.UI.createListView({
 			top : '55dp',
+			title: 'Configuration',
 			templates : {
 				'plain' : template
 			},
@@ -116,11 +92,9 @@ module.exports = function(sendData) {
 		});
 		listView.sections = [section];
 
-		win.add(mainMenuBar(win));
+		win.add(MainButtons(win));
 		win.add(listView);
 		win.open();
 	};
-	mainView();
+	mainConf();
 };
-
-		

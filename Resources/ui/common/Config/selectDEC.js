@@ -2,18 +2,15 @@
  * @author Alain
  */
 
-
-
-var Set= require("/ui/common/Config/setSelected");
+var Config= require("/data/config");
 
 var MainButtons= require("/ui/common/mainMenuBar");
 
 module.exports =function(){
-	var config=null;
-	Read();
+	var config = Config.getCurrentConfig();
 	var win = Ti.UI.createWindow({
 			backgroundColor:'#fff',
-			title: 'Assistive'
+			title: 'aHub'
 		});
 	function mainDEC(){
 		var data=[];
@@ -28,7 +25,7 @@ module.exports =function(){
 				},
 				events : {
 					click : function(e){
-						Set('DEC',e.itemIndex);
+						Config.setCurrentConfig('DEC',e.itemIndex);
 						win.close();
 					}
 				}
@@ -41,7 +38,7 @@ module.exports =function(){
 				},
 				events : {
 					click : function(e){
-						Set('DEC',e.itemIndex);
+						Config.setCurrentConfig('DEC',e.itemIndex);
 						win.close();
 					}
 				}
@@ -56,7 +53,7 @@ module.exports =function(){
 						text : val
 						},
 					image : {
-							image : "Decoder.png"
+							image : "images/Icon_decoder.png"
 						}
 				});	
 			}	
@@ -78,26 +75,6 @@ module.exports =function(){
 		win.add(listView);
 		win.open();
 	};
-	function Read(){
-		var path= Titanium.Filesystem.externalStorageDirectory + 'config.json';
-		if(Titanium.Filesystem.isExternalStoragePresent){
-			var f = Ti.Filesystem.openStream(Ti.Filesystem.MODE_READ,path);
-			var buffer = Ti.createBuffer({
-				value:'                                                                                                                       '
-			});
-			try{
-				f.read(buffer,0,255);	
-			}catch(e){
-				return;
-			};
-			
-			f.close();
-			var r=buffer.toString(); 
-			if(r!='' && r!=null){
-				config = JSON.parse(r);
-			}
-		}
-		return;
-	};
+
 	mainDEC();
 };
