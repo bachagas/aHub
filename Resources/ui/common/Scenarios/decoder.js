@@ -166,12 +166,11 @@ module.exports = function(sendData){
 					break;
 				case 'volup':
 					b.addEventListener('touchstart',function(e){
-						timePressed = 0;
+						sendData('#s '+config.tv.selected+','+val.click+'\n');
     					timer = setInterval(function(){
             			//here you can control how much time the button has been pressed
-            			//vibrate the phone or anything else
             				sendData('#s '+config.tv.selected+','+val.click+'\n');
-        				},100);
+        				},300);
 					});
 					b.addEventListener('touchend', function(e){
     					clearInterval(timer);
@@ -179,12 +178,10 @@ module.exports = function(sendData){
 					break;
 				case 'voldown':
 					b.addEventListener('touchstart',function(e){
-						timePressed = 0;
+						sendData('#s '+config.tv.selected+','+val.click+'\n');
     					timer = setInterval(function(){
-            			//here you can control how much time the button has been pressed
-            			//vibrate the phone or anything else
             				sendData('#s '+config.tv.selected+','+val.click+'\n');
-        				},100);
+        				},300);
 					});
 					b.addEventListener('touchend', function(e){
     					clearInterval(timer);
@@ -192,12 +189,10 @@ module.exports = function(sendData){
 					break;
 				case 'chup':
 					b.addEventListener('touchstart',function(e){
-						timePressed = 0;
+						sendData('#s '+config.tv.selected+','+val.click+'\n');
     					timer = setInterval(function(){
-            			//here you can control how much time the button has been pressed
-            			//vibrate the phone or anything else
             				sendData('#s '+config.tv.selected+','+val.click+'\n');
-        				},100);
+        				},300);
 					});
 					b.addEventListener('touchend', function(e){
     					clearInterval(timer);
@@ -205,12 +200,10 @@ module.exports = function(sendData){
 					break;
 				case 'chdown':
 					b.addEventListener('touchstart',function(e){
-						timePressed = 0;
+						sendData('#s '+config.tv.selected+','+val.click+'\n');
     					timer = setInterval(function(){
-            			//here you can control how much time the button has been pressed
-            			//vibrate the phone or anything else
             				sendData('#s '+config.tv.selected+','+val.click+'\n');
-        				},100);
+        				},300);
 					});
 					b.addEventListener('touchend', function(e){
     					clearInterval(timer);
