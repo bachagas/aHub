@@ -154,22 +154,22 @@ module.exports = function(sendData){
 					break;
 				case 'input':
 					b.addEventListener('click',function(e){
-						sendData('#s '+config.tv.selected+','+val.click+'\n'); 
+						sendData('#s '+config.dec.selected+','+val.click+'\n'); 
 						menuButtons();
 					});
 					break;
 				case 'info':
 				    b.addEventListener('click',function(e){
-						sendData('#s '+config.tv.selected+','+val.click+'\n'); 
+						sendData('#s '+config.dec.selected+','+val.click+'\n'); 
 						menuButtons();
 					});
 					break;
 				case 'volup':
 					b.addEventListener('touchstart',function(e){
-						sendData('#s '+config.tv.selected+','+val.click+'\n');
+						sendData('#s '+config.dec.selected+','+val.click+'\n');
     					timer = setInterval(function(){
             			//here you can control how much time the button has been pressed
-            				sendData('#s '+config.tv.selected+','+val.click+'\n');
+            				sendData('#s '+config.dec.selected+','+val.click+'\n');
         				},300);
 					});
 					b.addEventListener('touchend', function(e){
@@ -178,9 +178,9 @@ module.exports = function(sendData){
 					break;
 				case 'voldown':
 					b.addEventListener('touchstart',function(e){
-						sendData('#s '+config.tv.selected+','+val.click+'\n');
+						sendData('#s '+config.dec.selected+','+val.click+'\n');
     					timer = setInterval(function(){
-            				sendData('#s '+config.tv.selected+','+val.click+'\n');
+            				sendData('#s '+config.dec.selected+','+val.click+'\n');
         				},300);
 					});
 					b.addEventListener('touchend', function(e){
@@ -189,9 +189,9 @@ module.exports = function(sendData){
 					break;
 				case 'chup':
 					b.addEventListener('touchstart',function(e){
-						sendData('#s '+config.tv.selected+','+val.click+'\n');
+						sendData('#s '+config.dec.selected+','+val.click+'\n');
     					timer = setInterval(function(){
-            				sendData('#s '+config.tv.selected+','+val.click+'\n');
+            				sendData('#s '+config.dec.selected+','+val.click+'\n');
         				},300);
 					});
 					b.addEventListener('touchend', function(e){
@@ -200,9 +200,9 @@ module.exports = function(sendData){
 					break;
 				case 'chdown':
 					b.addEventListener('touchstart',function(e){
-						sendData('#s '+config.tv.selected+','+val.click+'\n');
+						sendData('#s '+config.dec.selected+','+val.click+'\n');
     					timer = setInterval(function(){
-            				sendData('#s '+config.tv.selected+','+val.click+'\n');
+            				sendData('#s '+config.dec.selected+','+val.click+'\n');
         				},300);
 					});
 					b.addEventListener('touchend', function(e){
